@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.mie.model.Thread;
+import com.mie.model.Comment;
 import com.mie.util.DbUtil;
 
 public class CommentDao {
@@ -20,24 +21,24 @@ public class CommentDao {
 
 
 
-	public List<Thread> getAllComments() {
-		List<Thread> threads = new ArrayList<Thread>();
+	public List<Comment> getAllComments(int id) {
+		List<Comment> comments = new ArrayList<Comment>();
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("select * from Threads");
+			ResultSet rs = statement.executeQuery("select * from Comments WHERE ThreadID = " + id);
 			while (rs.next()) {
-				Thread thread = new Thread();
-				thread.setThreadID(rs.getInt("ThreadID"));
-				thread.setUserID(rs.getInt("UserID"));
-				thread.setTitle(rs.getString("Title"));
-				thread.setDoP(rs.getDate("Date_of_Post"));
-				threads.add(thread);
+				Comment comment = new Comment();
+				comment.setCommentID(rs.getInt("CommentID"));
+				comment.setUserID(rs.getInt("UserID"));
+				comment.setComment(rs.getString("Comment"));
+				comment.setTimestamp(rs.getDate("Timestamp"));
+				comments.add(comment);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return threads;
+		return comments;
 	}
 
 

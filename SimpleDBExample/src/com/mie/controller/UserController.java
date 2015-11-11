@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mie.dao.ThreadDao;
+import com.mie.dao.*;
 import com.mie.model.User;
 import com.mie.model.Thread;
 
@@ -20,10 +20,12 @@ public class UserController extends HttpServlet {
 	private static String INSERT_OR_EDIT = "/thread.jsp";
 	private static String LIST_USER = "/forum.jsp";
 	private ThreadDao dao;
+	private CommentDao commentdao;
 
 	public UserController() {
 		super();
 		dao = new ThreadDao();
+		commentdao = new CommentDao();
 	}
 
 	protected void doGet(HttpServletRequest request,
@@ -47,6 +49,8 @@ public class UserController extends HttpServlet {
 			//display comments on page
 			
 			int threadId = Integer.parseInt(request.getParameter("ThreadID"));
+			System.out.print(threadId);
+			request.setAttribute("comments", commentdao.getAllComments(threadId));
 		
 			
 			
@@ -60,6 +64,16 @@ public class UserController extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
 	}
+	
+	//BRAINSTORMING FOR ADDING A COMMENT
+	//add in the textarea to take in the appropriate input and send to usercontroller (done)
+	//make sure on submit, the thread will also send in the threadID (not done)
+	//modify this doPost to make it for posting a comment
+	//have it take in getParameter("Comment") and do like comment.setComment
+	//and then do Comment dao.addComment()
+	//code the CommentDao to have this command
+	//the command should take in the parameter as a string, and the thread that the user is currently on
+	//the commmand will do some SQL like INSERT comment to Comments WHERE threadid=id
 
 	/*protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

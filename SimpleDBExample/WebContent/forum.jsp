@@ -17,7 +17,7 @@
 	<div class="container-noborder">
 		Hello! The time is now <b><%=new java.util.Date()%></b>. Here are the forum
 		topics: <br> <br> <a
-			href="UserController?action=insert">Add A New User</a> <br> <br>
+			href="UserController?action=insert">Create Thread</a> <br> <br>
 		<table border=1>
 			<thead>
 				<tr>
@@ -37,13 +37,14 @@
 						<td align="center"><fmt:formatDate pattern="yyyy-MMM-dd"
 								value="${thread.getDoP()}" /></td>
 						<td align="center"><a
-							href="UserController?action=edit&ThreadID=<c:out value="${thread.getThreadID()}"/>">Enter Forum</a></td>
+							href="UserController?action=edit&ThreadID=<c:out value="${thread.getThreadID()}"/>">View Thread</a></td>
 						<td align="center"><a
 							href="UserController?action=delete&userId=<c:out value="${user.getUserid()}"/>">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>

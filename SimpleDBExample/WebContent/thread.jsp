@@ -33,28 +33,38 @@
 			<thead>
 				<tr>
 					<th>CommentID</th>
-					<th>ThreadID</th>
+					<th>UserID</th>
 					<th>Comment</th>
 					<th>Timestamp</th>
 					<th colspan=2>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${threads}" var="thread">
+				<c:forEach items="${comments}" var="comment">
 					<tr>
-						<td align="center"><c:out value="${thread.getThreadID()}" /></td>
-						<td align="center"><c:out value="${thread.getUserID()}" /></td>
-						<td align="center"><c:out value="${thread.getTitle()}" /></td>
+						<td align="center"><c:out value="${comment.getCommentID()}" /></td>
+						<td align="center"><c:out value="${comment.getUserID()}" /></td>
+						<td align="center"><c:out value="${comment.getComment()}" /></td>
 						<td align="center"><fmt:formatDate pattern="yyyy-MMM-dd"
-								value="${thread.getDoP()}" /></td>
+								value="${comment.getTimestamp()}" /></td>
 						<td align="center"><a
-							href="UserController?action=edit&threadId=<c:out value="${user.getThreadID()}"/>">Enter Forum</a></td>
+							href="UserController?action=edit&threadId=<c:out value="${user.getThreadID()}"/>">Edit</a></td>
 						<td align="center"><a
 							href="UserController?action=delete&userId=<c:out value="${user.getUserid()}"/>">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<br>
+		Add comment: <br>
+		<form method="POST" action='UserController' name="frmAddComment">
+			<textarea rows="4" cols="50" name="Comment"
+			value="<c:out value="${comment.Comment}" />">
+			</textarea>
+			<input type ="submit" value="Submit">
+		</form>
+	
+		
 	</div>
 </body>
 </html>
