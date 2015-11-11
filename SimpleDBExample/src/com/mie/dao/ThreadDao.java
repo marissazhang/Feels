@@ -77,7 +77,7 @@ public class ThreadDao {
 				thread.setThreadID(rs.getInt("ThreadID"));
 				thread.setUserID(rs.getInt("UserID"));
 				thread.setTitle(rs.getString("Title"));
-				thread.setDoP(rs.getDate("Date_of_Post"));
+				thread.setDoP(rs.getDate("Date"));
 				threads.add(thread);
 			}
 		} catch (SQLException e) {
