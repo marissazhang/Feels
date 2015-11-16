@@ -19,45 +19,8 @@
 	<%@ include file="navbar.jsp"%>.
 
 	<div class="container">
-		<center>
-			<h1>Comments of this thread</h1>
-		</center>
-		<script>
-			$(function() {
-				$('input[name=dob]').datepicker();
-			});
-		</script>
-		Note: the User ID is a fixed field and cannot be changed. <br> <br>
 		
-				<table border=1>
-			<thead>
-				<tr>
-					<th>CommentID</th>
-					<th>UserID</th>
-					<th>Comment</th>
-					<th>Timestamp</th>
-					<th colspan=2>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${comments}" var="comment">
-					<tr>
-						<td align="center"><c:out value="${comment.getCommentID()}" /></td>
-						<td align="center"><c:out value="${comment.getUserID()}" /></td>
-						<td align="center"><c:out value="${comment.getComment()}" /></td>
-						<td align="center"><fmt:formatDate pattern="yyyy-MMM-dd"
-								value="${comment.getTimestamp()}" /></td>
-						<td align="center"><a
-							href="UserController?action=edit&threadId=<c:out value="${user.getThreadID()}"/>">Edit</a></td>
-						<td align="center"><a
-							href="UserController?action=delete&userId=<c:out value="${user.getUserid()}"/>">Delete</a></td>
-							
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<br>
-		Add comment: <br>
+		Add thread: <br>
 		<form method="POST" action='UserController' name="frmAddComment">
 		
 		Forum ID*: <input type="text" readonly="readonly" name="ThreadID"

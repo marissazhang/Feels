@@ -17,7 +17,7 @@
 	<div class="container-noborder">
 		Hello! The time is now <b><%=new java.util.Date()%></b>. Here are the forum
 		topics: <br> <br> <a
-			href="UserController?action=insert">Create Thread</a> <br> <br>
+			href="UserController?action=insertThread">Create Thread</a> <br> <br>
 		<table border=1>
 			<thead>
 				<tr>
@@ -37,7 +37,7 @@
 						<td align="center"><fmt:formatDate pattern="yyyy-MMM-dd"
 								value="${thread.getDoP()}" /></td>
 						<td align="center"><a
-							href="UserController?action=edit&ThreadID=<c:out value="${thread.getThreadID()}"/>">View Thread</a></td>
+							href="UserController?action=view&ThreadID=<c:out value="${thread.getThreadID()}"/>">View Thread</a></td>
 						<td align="center"><a
 							href="UserController?action=delete&userId=<c:out value="${user.getUserid()}"/>">Delete</a></td>
 					</tr>

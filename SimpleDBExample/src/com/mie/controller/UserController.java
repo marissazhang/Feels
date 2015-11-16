@@ -14,11 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.mie.dao.*;
 import com.mie.model.User;
 import com.mie.model.Thread;
+import com.mie.model.Comment;
+
+
+//TODO
+// 1. get the right comments page to display after adding a comment
+//2. add functionality to create a thread
+// 3. add functionality to delete a comment
+// 4. adding in functionality to post anonymously?
+
 
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String INSERT_OR_EDIT = "/thread.jsp";
+	private static String VIEW = "/thread.jsp";
 	private static String LIST_USER = "/forum.jsp";
+	private static String LIST_COMMENTS = "/thread.jsp";
 	private ThreadDao dao;
 	private CommentDao commentdao;
 
@@ -38,8 +48,8 @@ public class UserController extends HttpServlet {
 			dao.deleteUser(userId);
 			forward = LIST_USER;
 			request.setAttribute("users", dao.getAllUsers());
-		} else*/ if (action.equalsIgnoreCase("edit")) {
-			forward = INSERT_OR_EDIT;
+		} else*/ if (action.equalsIgnoreCase("view")) {
+			forward = VIEW;
 			/*int userId = Integer.parseInt(request.getParameter("userId"));
 			User user = dao.getUserById(userId);
 			request.setAttribute("user", user);*/
@@ -49,54 +59,47 @@ public class UserController extends HttpServlet {
 			//display comments on page
 			
 			int threadId = Integer.parseInt(request.getParameter("ThreadID"));
-			System.out.print(threadId);
+			System.out.println(threadId);
 			request.setAttribute("comments", commentdao.getAllComments(threadId));
 		
-			
+		
 			
 		} else if (action.equalsIgnoreCase("listUser")) {
 			forward = LIST_USER;
 			request.setAttribute("threads", dao.getAllThreads());
-		} /*else {
-			forward = INSERT_OR_EDIT;
-		}*/
+			
+		} else if (action.equalsIgnoreCase("insertThread")) {
+			forward = "/newThread.jsp";
+		}
+		
 
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
 	}
 	
-	//BRAINSTORMING FOR ADDING A COMMENT
-	//add in the textarea to take in the appropriate input and send to usercontroller (done)
-	//make sure on submit, the thread will also send in the threadID (not done)
-	//modify this doPost to make it for posting a comment
-	//have it take in getParameter("Comment") and do like comment.setComment
-	//and then do Comment dao.addComment()
-	//code the CommentDao to have this command
-	//the command should take in the parameter as a string, and the thread that the user is currently on
-	//the commmand will do some SQL like INSERT comment to Comments WHERE threadid=id
 
-	/*protected void doPost(HttpServletRequest request,
+	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		User user = new User();
-		user.setFirstName(request.getParameter("firstName"));
-		user.setLastName(request.getParameter("lastName"));
-		try {
-			Date dob = new SimpleDateFormat("MM/dd/yyyy").parse(request
-					.getParameter("dob"));
-			user.setDob(dob);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		user.setEmail(request.getParameter("email"));
-		String userid = request.getParameter("userid");
-		if (userid == null || userid.isEmpty()) {
-			dao.addUser(user);
-		} else {
-			user.setUserid(Integer.parseInt(userid));
-			dao.updateUser(user);
-		}
-		RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
-		request.setAttribute("users", dao.getAllUsers());
+		
+		Comment comment = new Comment();
+		//setting thread
+		String threadid = request.getParameter("ThreadID");
+		comment.setThreadID(Integer.parseInt(threadid));
+
+		//setting userid
+		String userid = request.getParameter("UserID");
+		comment.setUserID(Integer.parseInt(userid));
+		
+		//set comment
+		comment.setComment(request.getParameter("Comment"));
+		
+		//add to dao
+		commentdao.addComment(comment);
+
+		//TODO: figure out a way to take it back to the current comments page
+		RequestDispatcher view = request.getRequestDispatcher(VIEW);
+		request.setAttribute("threads", dao.getAllThreads());
 		view.forward(request, response);
-	}*/
+		
+	}
 }
