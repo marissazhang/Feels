@@ -19,7 +19,7 @@ import com.mie.model.Comment;
 
 //TODO
 // 1. get the right comments page to display after adding a comment
-//2. add functionality to create a thread
+// 2. add functionality to create a thread
 // 3. add functionality to delete a comment
 // 4. adding in functionality to post anonymously?
 
@@ -59,7 +59,7 @@ public class UserController extends HttpServlet {
 			//display comments on page
 			
 			int threadId = Integer.parseInt(request.getParameter("ThreadID"));
-			System.out.println(threadId);
+			commentdao.setCurrentThreadID(threadId);
 			request.setAttribute("comments", commentdao.getAllComments(threadId));
 		
 		
@@ -78,28 +78,64 @@ public class UserController extends HttpServlet {
 	}
 	
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String forward = "";
+		String action = request.getParameter("action");
+		if(action.equalsIgnoreCase("insertThread")) {
+			
+			//code for thread posting here
+			Thread thread = new Thread();
+			
+			//set userid
+			String userid = request.getParameter("UserID");
+			thread.setUserID(Integer.parseInt(userid));
+			
+			//set title
+			thread.setTitle(request.getParameter("Title"));
+			
+			//add to dao
+			dao.addThread(thread);
+			
+			//TODO: figure out a way to take it back to the current comments page
+			RequestDispatcher view = request.getRequestDispatcher(VIEW);
+			request.setAttribute("threads", dao.getAllThreads());
+			view.forward(request, response);
+		}
 		
-		Comment comment = new Comment();
-		//setting thread
-		String threadid = request.getParameter("ThreadID");
-		comment.setThreadID(Integer.parseInt(threadid));
-
-		//setting userid
-		String userid = request.getParameter("UserID");
-		comment.setUserID(Integer.parseInt(userid));
-		
-		//set comment
-		comment.setComment(request.getParameter("Comment"));
-		
-		//add to dao
-		commentdao.addComment(comment);
-
-		//TODO: figure out a way to take it back to the current comments page
-		RequestDispatcher view = request.getRequestDispatcher(VIEW);
-		request.setAttribute("threads", dao.getAllThreads());
-		view.forward(request, response);
+		else if (action.equalsIgnoreCase("insertComment")){
+			Comment comment = new Comment();
+			
+			//setting thread
+			int threadid = commentdao.getCurrentThreadID();
+			comment.setThreadID(commentdao.getCurrentThreadID());
+			
+			
+			/*String threadid = request.getParameter("ThreadID");
+			System.out.println("jtgoijrrtgswtg");
+			
+			comment.setThreadID(Integer.parseInt(threadid));*/
+	
+			//setting userid
+			String userid = request.getParameter("UserID");
+			System.out.print(userid);
+			System.out.print("bleh");
+			comment.setUserID(Integer.parseInt(userid));
+			
+			//set comment
+			System.out.print(request.getParameter("Comment"));
+			System.out.print("bleh");
+			comment.setComment(request.getParameter("Comment"));
+			
+			//add to dao
+			commentdao.addComment(comment);
+	
+			//TODO: figure out a way to take it back to the current comments page
+			RequestDispatcher view = request.getRequestDispatcher(VIEW);
+			request.setAttribute("threads", dao.getAllThreads());
+			view.forward(request, response);
+		}
 		
 	}
 }

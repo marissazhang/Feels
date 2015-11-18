@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mie.model.Comment;
 import com.mie.model.Thread;
 import com.mie.util.DbUtil;
 
@@ -18,16 +20,13 @@ public class ThreadDao {
 		connection = DbUtil.getConnection();
 	}
 
-	/*public void addUser(User user) {
+	public void addThread(Thread thread) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into users(firstname,lastname,dob,email) values (?, ?, ?, ? )");
+					.prepareStatement("insert into Threads(UserID,Title) values (?, ?)");
 			// Parameters start with 1
-			preparedStatement.setString(1, user.getFirstName());
-			preparedStatement.setString(2, user.getLastName());
-			preparedStatement.setDate(3, new java.sql.Date(user.getDob()
-					.getTime()));
-			preparedStatement.setString(4, user.getEmail());
+			preparedStatement.setInt(1, thread.getUserID());
+			preparedStatement.setString(2, thread.getTitle());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -35,7 +34,7 @@ public class ThreadDao {
 		}
 	}
 
-	public void deleteUser(int userId) {
+	/*public void deleteUser(int userId) {
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("delete from users where userid=?");
