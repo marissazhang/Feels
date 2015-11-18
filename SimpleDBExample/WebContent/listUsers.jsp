@@ -17,31 +17,24 @@
 	<%@ include file="navbar.jsp"%>
 	<div class="container-noborder">
 		Hello! The time is now <b><%=new java.util.Date()%></b>. The following
-		users are in your database: <br> <br> <a
-			href="UserController?action=insert">Add A New User</a> <br> <br>
+		users are in your database: <br> <br>
+		
+		This website will allow you to click on users to get more user info :) <br>
+		
+		<br> <a
+			href="UserController?action=insert">Create Account</a> <br> <br>
 		<table border=1>
 			<thead>
 				<tr>
-					<th>User Id</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>DOB</th>
-					<th>Email</th>
-					<th colspan=2>Action</th>
-				</tr>
+					<th>Username</th>
+					<th>Designation</th>
+					</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${users}" var="user">
 					<tr>
-						<td align="center"><c:out value="${user.getUserid()}" /></td>
-						<td align="center"><c:out value="${user.getFirstName()}" /></td>
-						<td align="center"><c:out value="${user.getLastName()}" /></td>
-						<td align="center"><fmt:formatDate pattern="yyyy-MMM-dd"
-								value="${user.getDob()}" /></td>
-						<td align="center"><c:out value="${user.getEmail()}" /></td>
-						<td align="center"><a href="UserController?action=edit&userId=<c:out value="${user.getUserid()}"/>">Update</a></td>
-						<td align="center"><a
-							href="UserController?action=delete&userId=<c:out value="${user.getUserid()}"/>">Delete</a></td>
+						<td align="center"><a href="UserController?action=userProfile&username=<c:out value="${user.getUsername()}"/>">${user.getUsername()}</a></td>
+						<td align="center"><c:out value="${user.getDesignation()}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>

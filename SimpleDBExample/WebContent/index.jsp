@@ -16,18 +16,20 @@
 	<div class="container">
 
 		<%=new String("Welcome!")%>
-		<br> <br> In this project, your team will design and build a
-		web application. A web application is a software application that is
-		accessed over the Internet using standard browsers (e.g. Internet
-		Explorer, Mozilla Firefox). Examples of web application would be
-		online-shopping, web banking, stock exchange and many others. Each
-		member of the team is expected to contribute equally to the project
-		though there may be a variety of different roles.<br> <br>
-		For the progress report deadline (<b>October 30</b>), you simply have
-		to have your prototype web apps generate a "Hello World!" output (you
-		don't need to have developed any of your backend functionality). <br>
-		<br> Instructions on how to submit your prototypes will be posted
-		closer to the due date.
+		<br> <br> This text is supposed to be some description about our project but we
+		are still thinking about that. <br>
+		<br> This is the Web App for Group 01-#FEELS and our members are:<br><br>
+			<li>Oghosa</li>
+			<li>Kayane</li>
+			<li>Aadil</li>
+			<li>Tzvi</li>
+			<li>Ron</li>
+			<li>Tzvi</li>
+			<li>Jordan</li>
+			<li>Marissa</li>
+			
+			<br><b>#feelgood</b>
+		
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>

@@ -20,27 +20,31 @@
 
 	<div class="container">
 		<center>
-			<h1>Create an Account</h1>
+			<h1>Create Account</h1>
+		Note: Only users that are from University of Toronto with an official utoronto email 
+		will be accepted in our system. <br> <br>
+		
+		If your email is mail.utoronto.ca, you will be designated as a Student, 
+		and if your email is utoronto.ca, you will be designated as a Professional. <br> <br>
 		</center>
 		<script>
 			$(function() {
 				$('input[name=dob]').datepicker();
 			});
 		</script>
-		Note: the User ID is a fixed field and cannot be changed. <br> <br>
-
 		<form action='UserController?action=newUser' method="POST" >
-			User ID*: <input type="text" readonly="readonly" name="userid"
-				value="<c:out value="${user.userid}" />"><br> First
-			Name: <input type="text" name="firstName"
-				value="<c:out value="${user.firstName}" />"><br> Last
-			Name : <input type="text" name="lastName"
-				value="<c:out value="${user.lastName}" />"><br>DOB
-			(MM/dd/yyyy): <input type="text" name="dob"
-				value="<fmt:formatDate pattern="MM/dd/yyyy" value="${user.dob}" />"><br>
+			Username: <input type="text" name="userName"
+				value="<c:out value="${user.username}" />"><br>
+			Password: <input type="text" name="password"
+				value="<c:out value="${user.password}" />"><br>
 			Email: <input type="text" name="email"
-				value="<c:out value="${user.email}" />"><br> <input
-				type="submit" value="Submit" />
+				value="<c:out value="${user.email}" />"><br>
+			Status: <input type="text" name="status"
+				value="<c:out value="${user.email}" />"><br>
+			Bio: <textarea type="text" name="bio"
+				value="<c:out value="${user.email}" />"></textarea><br><br>
+			<input type="submit" value="Submit" />
+				
 		</form>
 	</div>
 </body>
