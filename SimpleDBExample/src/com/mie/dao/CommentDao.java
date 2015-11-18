@@ -16,6 +16,7 @@ import com.mie.util.DbUtil;
 public class CommentDao {
 
 	private Connection connection;
+	private int CurrentThreadID;
 
 	public CommentDao() {
 		connection = DbUtil.getConnection();
@@ -56,6 +57,14 @@ public class CommentDao {
 		}
 
 		return comments;
+	}
+	
+	public void setCurrentThreadID(int threadid) {
+		this.CurrentThreadID = threadid;
+	}
+	
+	public int getCurrentThreadID() {
+		return this.CurrentThreadID;
 	}
 
 

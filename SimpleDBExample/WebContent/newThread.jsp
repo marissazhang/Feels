@@ -21,16 +21,10 @@
 	<div class="container">
 		
 		Add thread: <br>
-		<form method="POST" action='UserController' name="frmAddComment">
-		
-		Forum ID*: <input type="text" readonly="readonly" name="ThreadID"
-		<c:forEach items="${comments}" var="comment">
-		value="<c:out value="${comment.getThreadID()}" />"
-		</c:forEach>
-		><br>
+		<form method="POST" action="UserController?action=insertThread" name="frmAddThread">
+		<br>
 		UserID: <input type="text" name="UserID"><br>
-			<textarea rows="4" cols="50" name="Comment">
-			</textarea>
+		Title: <input type="text" name="Title"><br>
 			<input type ="submit" value="Submit">
 		</form>
 	
