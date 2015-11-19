@@ -19,15 +19,14 @@
 	<%@ include file="navbar.jsp"%>.
 
 	<div class="container">
+
+		If you would like to edit the account of <c:out value="${user.getUsername()}" />, please enter the corresponding password. <br>
 		
-		Add thread: <br>
-		<form method="POST" action="UserController?action=insertThread" name="frmAddThread">
-		<br>
-		UserID: <input type="text" name="UserID"><br>
-		Title: <input type="text" name="Title"><br>
-			<input type ="submit" value="Submit">
+		Username: <c:out value="${user.getUsername()}" /> <br>
+		<form action='UserController?action=verifyPassord&username=<c:out value="${user.getUsername()}" />' method="POST" >
+			Password: <input type="text" name="password" /> <br>
+		<input type="submit" value="Submit" />
 		</form>
-	
 		
 	</div>
 </body>
