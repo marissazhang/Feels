@@ -19,29 +19,15 @@
 	<%@ include file="navbar.jsp"%>.
 
 	<div class="container">
-		<center>
-			<h1>Create an Account</h1>
-		</center>
-		<script>
-			$(function() {
-				$('input[name=dob]').datepicker();
-			});
-		</script>
-		Note: the User ID is a fixed field and cannot be changed. <br> <br>
 
-		<form action='UserController?action=newUser' method="POST" >
-			User ID*: <input type="text" readonly="readonly" name="userid"
-				value="<c:out value="${user.userid}" />"><br> First
-			Name: <input type="text" name="firstName"
-				value="<c:out value="${user.firstName}" />"><br> Last
-			Name : <input type="text" name="lastName"
-				value="<c:out value="${user.lastName}" />"><br>DOB
-			(MM/dd/yyyy): <input type="text" name="dob"
-				value="<fmt:formatDate pattern="MM/dd/yyyy" value="${user.dob}" />"><br>
-			Email: <input type="text" name="email"
-				value="<c:out value="${user.email}" />"><br> <input
-				type="submit" value="Submit" />
+		If you would like to edit the account of <c:out value="${user.getUsername()}" />, please enter the corresponding password. <br>
+		
+		Username: <c:out value="${user.getUsername()}" /> <br>
+		<form action='UserController?action=verifyPassord&username=<c:out value="${user.getUsername()}" />' method="POST" >
+			Password: <input type="text" name="password" /> <br>
+		<input type="submit" value="Submit" />
 		</form>
+		
 	</div>
 </body>
 </html>
