@@ -49,7 +49,6 @@ public class CommentDao {
 				comment.setUserID(rs.getInt("UserID"));
 				comment.setThreadID(rs.getInt("ThreadID"));
 				comment.setComment(rs.getString("Comment"));
-				comment.setTimestamp(rs.getDate("Timestamp"));
 				comments.add(comment);
 			}
 		} catch (SQLException e) {

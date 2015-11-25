@@ -2,12 +2,24 @@ package com.mie.model;
 
 import java.util.Date;
 
+import com.mie.dao.ThreadDao;
+
 public class Comment {
 	private int CommentID;
 	private int UserID;
 	private int ThreadID;
 	private String Comment;
-	private Date Timestamp;
+	
+	public String getUsername(){
+		String username;
+		ThreadDao dao = new ThreadDao();
+		username = dao.getUsername(this.UserID);
+		
+		if(dao.isProfessional(this.UserID) == true){
+			username = "* " + username;
+		}
+		return username;
+	}
 	
 	public int getCommentID() {
 		return CommentID;
@@ -42,13 +54,6 @@ public class Comment {
 		this.Comment = comment;
 	}
 
-	public Date getTimestamp() {
-		return Timestamp;
-	}
-
-	public void setTimestamp(Date timestamp) {
-		this.Timestamp = timestamp;
-	}
 
 
 

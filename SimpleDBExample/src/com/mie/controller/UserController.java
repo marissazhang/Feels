@@ -1,6 +1,7 @@
 package com.mie.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,10 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.mie.dao.*;
 import com.mie.model.Thread;
 import com.mie.model.Comment;
+import com.mie.dao.CommentDao;
+import com.mie.dao.ThreadDao;
 import com.mie.dao.ResourceDao;
 import com.mie.dao.SymptomDao;
 import com.mie.dao.UserDao;
 import com.mie.model.User;
+
+import java.util.Calendar;
 
 
 //TODO
@@ -126,20 +131,39 @@ public class UserController extends HttpServlet {
 			//code for thread posting here
 			Thread thread = new Thread();
 			
+			//verification
+			String username = request.getParameter("userName");
+			String passwordEntered = request.getParameter("password");
+			
 			//set userid
-			String userid = request.getParameter("UserID");
-			thread.setUserID(Integer.parseInt(userid));
+			User user = dao.getUserByUsername(username);
+			int userid = user.getUserid();
+			thread.setUserID(userid);
 			
 			//set title
 			thread.setTitle(request.getParameter("Title"));
 			
-			//add to dao
-			threaddao.addThread(thread);
 			
-	
+			boolean correctPassword = dao.verifyPassword(username, passwordEntered);
+			if (correctPassword){
+				//add to dao if only the password matching works
+				threaddao.addThread(thread);
+			}
+			
+			//forwarding
+			forward = LIST_FORUM;
+			request.setAttribute("threads", threaddao.getAllThreads());
+			RequestDispatcher view = request.getRequestDispatcher(forward);
+			view.forward(request, response);
 		}
 		
-		else if (action.equalsIgnoreCase("insertComment")){
+		else if (action.equalsIgnoreCase("insertComment")){			
+			//verification
+			String username = request.getParameter("userName");
+			
+			String passwordEntered = request.getParameter("password");
+			
+			//setting up the comment stuff
 			Comment comment = new Comment();
 			
 			//setting thread
@@ -153,19 +177,47 @@ public class UserController extends HttpServlet {
 			comment.setThreadID(Integer.parseInt(threadid));*/
 	
 			//setting userid
-			String userid = request.getParameter("UserID");
-			System.out.print(userid);
-			System.out.print("bleh");
-			comment.setUserID(Integer.parseInt(userid));
+			User user = dao.getUserByUsername(username);
+			int userid = user.getUserid();
+			comment.setUserID(userid);
 			
 			//set comment
 			System.out.print(request.getParameter("Comment"));
-			System.out.print("bleh");
 			comment.setComment(request.getParameter("Comment"));
+
 			
-			//add to dao
-			commentdao.addComment(comment);
-	
+		
+			//boolean correctPassword = true;
+			boolean correctPassword = dao.verifyPassword(username, passwordEntered);
+
+			//if password correct //go to edit
+			if (correctPassword){
+				//add to dao if only the password matching works
+				
+				//check if the request if the request wants to be anonymous
+				String checkbox = request.getParameter("Anon");
+				
+				if(checkbox != null){
+					//set userid for anon
+					User anonUser = dao.getUserByUsername("Anonymous");
+					int anonuserid = anonUser.getUserid();
+					comment.setUserID(anonuserid);
+					
+					
+				}
+				
+				
+				//if so create a comment based on anon user
+				
+				commentdao.addComment(comment);
+			}
+			
+			
+			//forwarding
+			forward = VIEW;
+			request.setAttribute("comments", commentdao.getAllComments(threadid));
+			RequestDispatcher view = request.getRequestDispatcher(forward);
+			view.forward(request, response);
 
 		}
 

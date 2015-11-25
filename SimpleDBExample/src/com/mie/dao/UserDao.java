@@ -109,6 +109,7 @@ public class UserDao {
 			user.setDesignation(rs.getString("Designation"));
 			user.setStatus(rs.getString("Status"));
 			user.setBio(rs.getString("Bio"));
+			user.setUserid(rs.getInt("UserID"));
 		}
 	} catch (SQLException e) {
 		e.printStackTrace();

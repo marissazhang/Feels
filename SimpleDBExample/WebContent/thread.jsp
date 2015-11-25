@@ -27,14 +27,13 @@
 				$('input[name=dob]').datepicker();
 			});
 		</script>
-		Note: the User ID is a fixed field and cannot be changed. <br> <br>
+		Note: U of T Professionals are marked with an asterisk (*) beside their name. <br> <br>
 		
 				<table border=1>
 			<thead>
 				<tr>
 					<th>Username</th>
 					<th>Comment</th>
-					<th>Timestamp</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,7 +41,6 @@
 					<tr>
 						<td align="center"><c:out value="${comment.getUsername()}" /></td>
 						<td align="center"><c:out value="${comment.getComment()}" /></td>
-						<td align="center"><c:out value="${comment.getTimestamp()}" /></td>
 							
 					</tr>
 				</c:forEach>
@@ -57,8 +55,8 @@
 				value="<c:out value="${user.username}" />"><br>
 			Password: <input type="text" name="password"
 				value="<c:out value="${user.password}" />"><br>
-			<textarea rows="4" cols="50" name="Comment">
-			</textarea>
+			<input type="checkbox" name="Anon" value="Anon">Post as Anonymous<br>
+			<textarea rows="4" cols="50" name="Comment"></textarea>
 			<input type ="submit" value="Submit">
 		</form>
 	

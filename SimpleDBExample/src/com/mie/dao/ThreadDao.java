@@ -23,7 +23,7 @@ public class ThreadDao {
 	public void addThread(Thread thread) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into Threads(UserID,Title) values (?, ?)");
+					.prepareStatement("insert into Threads(UserID,Title) values (?, ? )");
 			// Parameters start with 1
 			preparedStatement.setInt(1, thread.getUserID());
 			preparedStatement.setString(2, thread.getTitle());
@@ -76,7 +76,6 @@ public class ThreadDao {
 				thread.setThreadID(rs.getInt("ThreadID"));
 				thread.setUserID(rs.getInt("UserID"));
 				thread.setTitle(rs.getString("Title"));
-				thread.setDoP(rs.getDate("Date"));
 				threads.add(thread);
 			}
 		} catch (SQLException e) {
@@ -85,6 +84,58 @@ public class ThreadDao {
 
 		return threads;
 	}
+	
+	public String getUsername(int UserID) {
+		String name = "";
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select Username from Users where UserID = " + UserID);
+			while (rs.next()) {
+			name = rs.getString("Username");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return name;
+	}
+	
+	public int getUserID(String username){
+		int id = -8;
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select UserID from Users where Username = " + username);
+			while (rs.next()) {
+			id = rs.getInt("UserID");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return id;
+	}
+	
+	public boolean isProfessional(int UserID){
+		Boolean isPro = false;
+		String des ="";
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select Designation from Users where UserID = " + UserID);
+			while (rs.next()) {
+				des = rs.getString("Designation");
+			}
+			
+			if(des.equals("Professional")){
+				isPro = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return isPro;
+	}
+
 
 	/*public User getThreadById(int userId) {
 		User user = new User();

@@ -24,7 +24,6 @@
 					<th>Thread Id</th>
 					<th>Posted By</th>
 					<th>Title</th>
-					<th>Date of Post</th>
 					<th colspan=2>Action</th>
 				</tr>
 			</thead>
@@ -34,7 +33,6 @@
 						<td align="center"><c:out value="${thread.getThreadID()}" /></td>
 						<td align="center"><c:out value="${thread.getUsername()}" /></td>
 						<td align="center"><c:out value="${thread.getTitle()}" /></td>
-						<td align="center"><c:out value="${thread.getDoP()}" /></td>
 						<td align="center"><a
 							href="UserController?action=view&ThreadID=<c:out value="${thread.getThreadID()}"/>">View Thread</a></td>
 					</tr>

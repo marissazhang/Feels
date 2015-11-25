@@ -1,13 +1,18 @@
 package com.mie.model;
 
-import java.util.Date;
+import com.mie.dao.ThreadDao;
 
 public class Thread {
 	private int ThreadID;
 	private int UserID;
 	private String Title;
-	private Date Date_of_Post;
 
+	public String getUsername(){
+		String username;
+		ThreadDao dao = new ThreadDao();
+		username = dao.getUsername(this.UserID);
+		return username;
+	}
 	public int getThreadID() {
 		return ThreadID;
 	}
@@ -32,13 +37,6 @@ public class Thread {
 		this.Title = title;
 	}
 
-	public Date getDoP() {
-		return Date_of_Post;
-	}
-
-	public void setDoP(Date doP) {
-		this.Date_of_Post = doP;
-	}
 
 
 /*	@Override
