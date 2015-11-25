@@ -1,17 +1,27 @@
 body {
 	width: 100%;
-	max-width: 960px;
-	margin: 20px 0;
+/*	max-width: 960px; */
+	margin: 20px auto;
+	background: url(http://i.imgur.com/6NV1h9Z.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 /*
 * Container for body text
 */
+
 .container {
 	width: 70%;
-	margin: auto;
+	max-width: 700px;
+	margin: 75px auto;
 	padding: 30px;
 	border: 1px solid #666;
 	background: #ffffff;
+	font-family: Helvetica; 
+	background: cover;
+	
+
+	
 }
 .container-noborder {
 	width: 70%;
@@ -19,12 +29,15 @@ body {
 	padding: 10px;
 	border: 0px solid #666;
 	background: #ffffff;
+	position: absolute;
+	z-index: 100;
+	font-family: Helvetica;
 }
 /*
 * Navigation Bar
 */
 nav {
-	margin: 50px auto;
+	margin: -40px;
 	text-align: center;
 }
 nav ul ul {
@@ -34,16 +47,21 @@ nav ul li:hover>ul {
 	display: block;
 }
 nav ul {
-	background: #80b847;
-	background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+	background: #ffffff;
+	/*background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
 	background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
-	background: -webkit-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+	background: -webkit-linear-gradient(top, #efefef 0%, #bbbbbb 100%);*/
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-	padding: 0 10px;
+	/*padding: 0 100px;*/
+	width: 100%;
 	border-radius: 0px;
 	list-style: none;
 	position: relative;
 	display: inline-table;
+	font-family: Helvetica; 
+	font-size: 120%;
+	color: #ffffff;
+	text-align: center;
 }
 nav ul:after {
 	content: "";
@@ -60,12 +78,12 @@ nav ul li:hover {
 	background: -webkit-linear-gradient(top, #4f5964 0%, #5f6975 40%);
 }
 nav ul li:hover a {
-	color: #58ef47;
+	color: #ffffff;
 }
 nav ul li a {
 	display: block;
 	padding: 10px 20px;
-	color: #757575;
+	color: #000000;
 	text-decoration: none;
 }
 nav ul ul {
@@ -83,7 +101,7 @@ nav ul ul li {
 }
 nav ul ul li a {
 	padding: 10px 10px;
-	color: #fff;
+	color: #8000ff;
 }
 nav ul ul li a:hover {
 	background: #4b545f;

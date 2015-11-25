@@ -7,22 +7,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" type="text/css" href="style/theme.css" />
 
-<title>MIE350 Sample Database Web App</title>
+<title>#FEELS</title>
 
 </head>
 <body>
 	<%@ include file="navbar.jsp"%>
-
 	<div class="container">
-
+	
 		<%=new String("Welcome!")%>
-		<br> <br> This text is supposed to be some description about our project but we
-		are still thinking about that. <br>
+		<br> 
+			<br> #FEELS is a mental health community website for students at UofT. Our mission
+			is to provide an online safe haven for all those in mental distress. Our team strives to 
+			help each and every individual feel comfortable at ease with themsevles.
+			<br>
+		
 		<br> This is the Web App for Group 01-#FEELS and our members are:<br><br>
 			<li>Oghosa</li>
 			<li>Kayane</li>
 			<li>Aadil</li>
-			<li>Tzvi</li>
 			<li>Ron</li>
 			<li>Tzvi</li>
 			<li>Jordan</li>

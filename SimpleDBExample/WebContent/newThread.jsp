@@ -23,7 +23,10 @@
 		Add thread: <br>
 		<form method="POST" action="UserController?action=insertThread" name="frmAddThread">
 		<br>
-		UserID: <input type="text" name="UserID"><br>
+		Username: <input type="text" name="userName"
+				value="<c:out value="${user.username}" />"><br>
+			Password: <input type="text" name="password"
+				value="<c:out value="${user.password}" />"><br>
 		Title: <input type="text" name="Title"><br>
 			<input type ="submit" value="Submit">
 		</form>

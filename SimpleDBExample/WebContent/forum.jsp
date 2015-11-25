@@ -32,14 +32,11 @@
 				<c:forEach items="${threads}" var="thread">
 					<tr>
 						<td align="center"><c:out value="${thread.getThreadID()}" /></td>
-						<td align="center"><c:out value="${thread.getUserID()}" /></td>
+						<td align="center"><c:out value="${thread.getUsername()}" /></td>
 						<td align="center"><c:out value="${thread.getTitle()}" /></td>
-						<td align="center"><fmt:formatDate pattern="yyyy-MMM-dd"
-								value="${thread.getDoP()}" /></td>
+						<td align="center"><c:out value="${thread.getDoP()}" /></td>
 						<td align="center"><a
 							href="UserController?action=view&ThreadID=<c:out value="${thread.getThreadID()}"/>">View Thread</a></td>
-						<td align="center"><a
-							href="UserController?action=delete&userId=<c:out value="${user.getUserid()}"/>">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

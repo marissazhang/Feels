@@ -20,49 +20,32 @@
 
 	<div class="container">
 		<center>
-			<h1>Comments of this thread</h1>
+			<h1>Create Account</h1>
+		Note: Only users that are from University of Toronto with an official utoronto email 
+		will be accepted in our system. <br> <br>
+		
+		If your email is mail.utoronto.ca, you will be designated as a Student, 
+		and if your email is utoronto.ca, you will be designated as a Professional. <br> <br>
 		</center>
 		<script>
 			$(function() {
 				$('input[name=dob]').datepicker();
 			});
 		</script>
-		Note: the User ID is a fixed field and cannot be changed. <br> <br>
-		
-				<table border=1>
-			<thead>
-				<tr>
-					<th>Username</th>
-					<th>Comment</th>
-					<th>Timestamp</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${comments}" var="comment">
-					<tr>
-						<td align="center"><c:out value="${comment.getUsername()}" /></td>
-						<td align="center"><c:out value="${comment.getComment()}" /></td>
-						<td align="center"><c:out value="${comment.getTimestamp()}" /></td>
-							
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<br>
-		Add comment: <br>
-		<form method="POST" action="UserController?action=insertComment" name="frmAddComment">
-		
-		<br>
+		<form action='UserController?action=newUser' method="POST" >
 			Username: <input type="text" name="userName"
 				value="<c:out value="${user.username}" />"><br>
 			Password: <input type="text" name="password"
 				value="<c:out value="${user.password}" />"><br>
-			<textarea rows="4" cols="50" name="Comment">
-			</textarea>
-			<input type ="submit" value="Submit">
+			Email: <input type="text" name="email"
+				value="<c:out value="${user.email}" />"><br>
+			Status: <input type="text" name="status"
+				value="<c:out value="${user.email}" />"><br>
+			Bio: <textarea type="text" name="bio"
+				value="<c:out value="${user.email}" />"></textarea><br><br>
+			<input type="submit" value="Submit" />
+				
 		</form>
-	
-		
 	</div>
 </body>
 </html>
