@@ -8,5 +8,5 @@ Jordan Yerzy,
 Kayane Kassabian, 
 Aadil Sookia, 
 Oghosa Igbinakenzua, 
-Tzvi Spivak, 
+and Tzvi Spivak
 
